@@ -1,27 +1,35 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {FC} from 'react';
+import * as React from 'react';
+import {View} from 'react-native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {Button} from '@react-navigation/elements';
+import SkiaDrawings from './src/SkiaDrawings';
 
-interface Props {}
+function HomeScreen() {
+  const navigation = useNavigation();
 
-const App: FC<Props> = props => {
+  return <SkiaDrawings />;
+}
+
+function NotificationsScreen() {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.textStyle}>My Gallery App !</Text>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Button onPress={() => navigation.goBack()}>Go back home</Button>
     </View>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  textStyle: {
-    fontSize: 18,
-    color: '#111111',
-  },
-});
+const Drawer = createDrawerNavigator();
 
-export default App;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+}
