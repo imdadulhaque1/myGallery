@@ -1,25 +1,10 @@
 import * as React from 'react';
-import {View} from 'react-native';
+
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
-import {Button} from '@react-navigation/elements';
-import SkiaDrawings from './src/SkiaDrawings';
-
-function HomeScreen() {
-  const navigation = useNavigation();
-
-  return <SkiaDrawings />;
-}
-
-function NotificationsScreen() {
-  const navigation = useNavigation();
-
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button onPress={() => navigation.goBack()}>Go back home</Button>
-    </View>
-  );
-}
+import {NavigationContainer} from '@react-navigation/native';
+import HomeScreen from './src/screen/mainScreen/HomeScreen';
+import NotificationScreen from './src/screen/mainScreen/NotificationScreen';
+import ProfileScreen from './src/screen/mainScreen/ProfileScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -28,7 +13,8 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        <Drawer.Screen name="Profile" component={ProfileScreen} />
+        <Drawer.Screen name="Notifications" component={NotificationScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
