@@ -40,3 +40,4 @@ export const {width: screenWidth, height: screenHeight} =
   Dimensions.get('window');
 
 //   rm -rf node_modules android/.cxx android/.gradle android/app/.cxx android/app/build ios/build ios/Pods ios/Podfile.lock
+// CMAKe error: rm -rf android/app/.cxx android/build android/app/build
